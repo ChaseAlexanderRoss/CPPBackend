@@ -15,7 +15,6 @@ ITEM_TYPES = (
 )
 
 OCCASIONS = (
-    ('All occasions', 'ALLOCCASIONS'),
     ('Birthday', 'BIRTHDAY'),
     ('Cheer Up', 'CHEERUP'),
     ('Congratulations', 'CONGRATULATIONS'),
@@ -32,7 +31,6 @@ OCCASIONS = (
 )
 
 PRODUCT_TYPES = (
-    ('All Types', 'ALLTYPES'),
     ('Party Supply', 'PARTY SUPPLY'),
     ('Accessories', 'ACCESSORIES'),
     ('Jewelry', 'JEWELRY'),
@@ -80,9 +78,9 @@ class Product(models.Model):
     picture = models.CharField(max_length=100)
     price = models.IntegerField()
     occasion = models.CharField(
-        max_length=100, choices=OCCASIONS, default='All Occasions')
+        max_length=100, choices=OCCASIONS, default='Birthday')
     product_type = models.CharField(
-        max_length=100, choices=PRODUCT_TYPES, default='All Types')
+        max_length=100, choices=PRODUCT_TYPES, default='Party Supply')
 
 
 class Card(models.Model):
