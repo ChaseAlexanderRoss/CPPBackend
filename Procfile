@@ -1,0 +1,1 @@
+web: bundle exec django server -p $PORT
