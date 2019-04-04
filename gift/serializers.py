@@ -25,7 +25,7 @@ class BoxSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('design', 'title', 'total_cost', 'shipping_address', 'boxes')
 
 
-class ItemSerializer:
+class ItemSerializer(serializers.HyperlinkedModelSerializer):
     items = serializers.HyperlinkedRelatedField(
         view_name='items_detail',
         read_only=True
@@ -37,7 +37,7 @@ class ItemSerializer:
                   'occasion', 'product_type', 'items')
 
 
-class UserSerializer:
+class UserSerializer(serializers.HyperlinkedModelSerializer):
     users = serializers.HyperlinkedRelatedField(
         view_name='users_detail',
         read_only=True
@@ -49,7 +49,7 @@ class UserSerializer:
                   'credit_card_exp_date', 'users')
 
 
-class OrderSerializer:
+class OrderSerializer(serializers.HyperlinkedModelSerializer):
     orders = serializers.HyperlinkedRelatedField(
         view_name='orders_detail',
         read_only=True
