@@ -8,11 +8,11 @@ BOX_DESIGNS = (
     ('Natural', 'NATURAL')
 )
 
-ITEM_TYPES = (
-    ('product', 'PRODUCT'),
-    ('card', 'CARD'),
-    ('gift card', 'GIFTCARD')
-)
+# ITEM_TYPES = (
+#     ('product', 'PRODUCT'),
+#     ('card', 'CARD'),
+#     ('gift card', 'GIFTCARD')
+# )
 
 OCCASIONS = (
     ('Birthday', 'BIRTHDAY'),
@@ -67,13 +67,6 @@ class Box(models.Model):
 
 
 class Item(models.Model):
-    item_type = models.CharField(
-        max_length=100, choices=ITEM_TYPES, default='product')
-
-
-class Product(models.Model):
-    item_id = models.ForeignKey(
-        Item, on_delete=models.CASCADE, related_name='product_item_id')
     name = models.CharField(max_length=100)
     picture = models.CharField(max_length=100)
     price = models.IntegerField()
@@ -83,23 +76,35 @@ class Product(models.Model):
         max_length=100, choices=PRODUCT_TYPES, default='Party Supply')
 
 
-class Card(models.Model):
-    item_id = models.ForeignKey(
-        Item, on_delete=models.CASCADE, related_name='card_item_id')
-    name = models.CharField(max_length=100)
-    picture = models.CharField(max_length=100)
-    price = models.IntegerField()
-    occasion = models.CharField(
-        max_length=100, choices=OCCASIONS, default='All Occasions')
-    message = models.CharField(max_length=200)
+# class Product(models.Model):
+#     item_id = models.ForeignKey(
+#         Item, on_delete=models.CASCADE, related_name='product_item_id')
+#     name = models.CharField(max_length=100)
+#     picture = models.CharField(max_length=100)
+#     price = models.IntegerField()
+#     occasion = models.CharField(
+#         max_length=100, choices=OCCASIONS, default='Birthday')
+#     product_type = models.CharField(
+#         max_length=100, choices=PRODUCT_TYPES, default='Party Supply')
 
 
-class Giftcard(models.Model):
-    item_id = models.ForeignKey(
-        Item, on_delete=models.CASCADE, related_name='giftcard_item_id')
-    store = models.CharField(
-        max_length=100, choices=GIFTCARD_STORES, default='Postmates')
-    amount = models.IntegerField()
+# class Card(models.Model):
+#     item_id = models.ForeignKey(
+#         Item, on_delete=models.CASCADE, related_name='card_item_id')
+#     name = models.CharField(max_length=100)
+#     picture = models.CharField(max_length=100)
+#     price = models.IntegerField()
+#     occasion = models.CharField(
+#         max_length=100, choices=OCCASIONS, default='All Occasions')
+#     message = models.CharField(max_length=200)
+
+
+# class Giftcard(models.Model):
+#     item_id = models.ForeignKey(
+#         Item, on_delete=models.CASCADE, related_name='giftcard_item_id')
+#     store = models.CharField(
+#         max_length=100, choices=GIFTCARD_STORES, default='Postmates')
+#     amount = models.IntegerField()
 
 
 class Order(models.Model):
