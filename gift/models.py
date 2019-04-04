@@ -2,11 +2,56 @@ from django.db import models
 
 # Create your models here.
 
+BOX_DESIGNS = (
+    ('Cozy', 'COZY'),
+    ('Congratulations', 'CONGRATULATIONS'),
+    ('Natural', 'NATURAL')
+)
+
+# ITEM_TYPES = (
+#     ('product', 'PRODUCT'),
+#     ('card', 'CARD'),
+#     ('gift card', 'GIFTCARD')
+# )
+
+OCCASIONS = (
+    ('Birthday', 'BIRTHDAY'),
+    ('Cheer Up', 'CHEERUP'),
+    ('Congratulations', 'CONGRATULATIONS'),
+    ('New Baby', 'NEWBABY'),
+    ('Housewarming', 'HOUSEWARMING'),
+    ('Breakup', 'BREAKUP'),
+    ('Engagement', 'ENGAGEMENT'),
+    ('Holiday', 'HOLIDAY'),
+    ('New Job', 'NEWJOB'),
+    ('Galentine\'s Day', 'GALENTINESDAY'),
+    ('For Mom', 'FORMOM'),
+    ('For Dad', 'FORDAD'),
+    ('Lux Box', 'LUXBOX')
+)
+
+PRODUCT_TYPES = (
+    ('Party Supply', 'PARTY SUPPLY'),
+    ('Accessories', 'ACCESSORIES'),
+    ('Jewelry', 'JEWELRY'),
+    ('Houseware', 'HOUSEWARE'),
+    ('Spa', 'SPA'),
+    ('Candles', 'CANDLES'),
+    ('Stationary', 'STATIONARY')
+)
+
+GIFTCARD_STORES = (
+    ('Postmates', 'POSTMATES'),
+    ('Starbucks', 'STARBUCKS'),
+    ('Airline', 'AIRLINE'),
+    ('Nordstrom', 'NORDSTROM')
+)
+
 
 class Address(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, default="")
     street_1 = models.CharField(max_length=100)
-    street_2 = models.CharField(max_length=100)
+    street_2 = models.CharField(max_length=100, default="")
     city = models.CharField(max_length=100)
     zip_code = models.IntegerField()
     state = models.CharField(max_length=2)
@@ -22,34 +67,13 @@ class Box(models.Model):
 
 
 class Item(models.Model):
-    item_type = models.CharField(max_length=100)
-
-
-class Product(models.Model):
-    item_id = models.ForeignKey(
-        Item, on_delete=models.CASCADE, related_name='product_item_id')
-    name = models.CharField(max_length=100)
-    picture = models.CharField(max_length=100)
-    price = models.IntegerField()
-    occasion = models.CharField(max_length=100)
-    product_type = models.CharField(max_length=100)
-
-
-class Card(models.Model):
-    item_id = models.ForeignKey(
-        Item, on_delete=models.CASCADE, related_name='card_item_id')
-    name = models.CharField(max_length=100)
-    picture = models.CharField(max_length=100)
-    price = models.IntegerField()
-    occasion = models.CharField(max_length=100)
-    message = models.CharField(max_length=200)
-
-
-class Giftcard(models.Model):
-    item_id = models.ForeignKey(
-        Item, on_delete=models.CASCADE, related_name='giftcard_item_id')
-    store = models.CharField(max_length=100)
-    amount = models.IntegerField()
+    name = models.CharField(max_length=100, default="")
+    picture = models.CharField(max_length=100, default="")
+    price = models.IntegerField(default=0)
+    occasion = models.CharField(
+        max_length=100, choices=OCCASIONS, default='Birthday')
+    product_type = models.CharField(
+        max_length=100, choices=PRODUCT_TYPES, default='Party Supply')
 
 
 class Order(models.Model):
@@ -62,7 +86,37 @@ class Order(models.Model):
 
 class User(models.Model):
     # add username and password if we get to authentication
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, default="")
     credit_card_num = models.IntegerField()
     credit_card_sec_code = models.IntegerField()
     credit_card_exp_date = models.CharField(max_length=5)
+
+# class Product(models.Model):
+#     item_id = models.ForeignKey(
+#         Item, on_delete=models.CASCADE, related_name='product_item_id')
+#     name = models.CharField(max_length=100)
+#     picture = models.CharField(max_length=100)
+#     price = models.IntegerField()
+#     occasion = models.CharField(
+#         max_length=100, choices=OCCASIONS, default='Birthday')
+#     product_type = models.CharField(
+#         max_length=100, choices=PRODUCT_TYPES, default='Party Supply')
+
+
+# class Card(models.Model):
+#     item_id = models.ForeignKey(
+#         Item, on_delete=models.CASCADE, related_name='card_item_id')
+#     name = models.CharField(max_length=100)
+#     picture = models.CharField(max_length=100)
+#     price = models.IntegerField()
+#     occasion = models.CharField(
+#         max_length=100, choices=OCCASIONS, default='All Occasions')
+#     message = models.CharField(max_length=200)
+
+
+# class Giftcard(models.Model):
+#     item_id = models.ForeignKey(
+#         Item, on_delete=models.CASCADE, related_name='giftcard_item_id')
+#     store = models.CharField(
+#         max_length=100, choices=GIFTCARD_STORES, default='Postmates')
+#     amount = models.IntegerField()
