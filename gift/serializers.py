@@ -11,14 +11,14 @@ class AddressSerializer(serializers.HyperlinkedModelSerializer):
         model = Address
         fields = ('id', 'name', 'street_1', 'street_2', 'city', 'zip_code', 'state', 'country', 'addresses')
 
-# class BoxSerializer(serializers.HyperlinkedModelSerializer):
-#     boxes = serializers.HyperlinkedRelatedField(
-#     view_name='box_detail',
-#     )
+class BoxSerializer(serializers.HyperlinkedModelSerializer):
+    boxes = serializers.HyperlinkedRelatedField(
+    view_name='box_detail',
+    )
 
-#     class Meta:
-#         model = Box
-#         fields = ('design','title','total_cost','shipping_address')
+    class Meta:
+        model = Box
+        fields = ('design','title','total_cost','shipping_address', 'boxes')
 
 # class ItemSerializer(serializers.HyperlinkedModelSerializer):
 #     items = serializers.HyperlinkedRelatedField(
