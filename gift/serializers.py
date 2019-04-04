@@ -15,14 +15,14 @@ class AddressSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class BoxSerializer(serializers.HyperlinkedModelSerializer):
-    boxes = serializers.HyperlinkedRelatedField(
-        view_name='boxes_detail',
+    shipping_address = serializers.HyperlinkedRelatedField(
+        view_name='addresses_detail',
         read_only=True
     )
 
     class Meta:
         model = Box
-        fields = ('design', 'title', 'total_cost', 'shipping_address', 'boxes')
+        fields = ('design', 'title', 'total_cost', 'shipping_address')
 
 
 class ItemSerializer(serializers.HyperlinkedModelSerializer):
@@ -55,7 +55,12 @@ class OrderSerializer(serializers.HyperlinkedModelSerializer):
         read_only=True
     )
 
+    items = serializers.HyperlinkedRelatedField(
+        view_name='orders_detail',
+        read_only=True
+    )
+
     class Meta:
         model = Item
         fields = ('name', 'picture', 'price',
-                  'occasion', 'product_type', 'items')
+                  'occasion', 'product_type', 'items', 'orders')

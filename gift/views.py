@@ -35,7 +35,7 @@ class UsersDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = UserSerializer
 
 
-class OrdersList(generics.ListAPIView):
+class OrdersList(generics.ListCreateAPIView):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
 
@@ -45,7 +45,7 @@ class OrdersDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = OrderSerializer
 
 
-class ItemsList(generics.ListAPIView):
+class ItemsList(generics.ListCreateAPIView):
     queryset = Item.objects.all()
     serializer_class = ItemSerializer
 
