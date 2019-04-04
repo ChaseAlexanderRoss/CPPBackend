@@ -49,9 +49,9 @@ GIFTCARD_STORES = (
 
 
 class Address(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, default="")
     street_1 = models.CharField(max_length=100)
-    street_2 = models.CharField(max_length=100)
+    street_2 = models.CharField(max_length=100, default="")
     city = models.CharField(max_length=100)
     zip_code = models.IntegerField()
     state = models.CharField(max_length=2)
@@ -67,14 +67,29 @@ class Box(models.Model):
 
 
 class Item(models.Model):
-    name = models.CharField(max_length=100)
-    picture = models.CharField(max_length=100)
-    price = models.IntegerField()
+    name = models.CharField(max_length=100, default="")
+    picture = models.CharField(max_length=100, default="")
+    price = models.IntegerField(default=0)
     occasion = models.CharField(
         max_length=100, choices=OCCASIONS, default='Birthday')
     product_type = models.CharField(
         max_length=100, choices=PRODUCT_TYPES, default='Party Supply')
 
+
+class Order(models.Model):
+    box_id = models.ForeignKey(
+        Box, on_delete=models.CASCADE, related_name='order_box_id')
+    item_id = models.ForeignKey(
+        Item, on_delete=models.CASCADE, related_name='order_item_id')
+    quantity = models.IntegerField()
+
+
+class User(models.Model):
+    # add username and password if we get to authentication
+    name = models.CharField(max_length=100, default="")
+    credit_card_num = models.IntegerField()
+    credit_card_sec_code = models.IntegerField()
+    credit_card_exp_date = models.CharField(max_length=5)
 
 # class Product(models.Model):
 #     item_id = models.ForeignKey(
@@ -105,19 +120,3 @@ class Item(models.Model):
 #     store = models.CharField(
 #         max_length=100, choices=GIFTCARD_STORES, default='Postmates')
 #     amount = models.IntegerField()
-
-
-class Order(models.Model):
-    box_id = models.ForeignKey(
-        Box, on_delete=models.CASCADE, related_name='order_box_id')
-    item_id = models.ForeignKey(
-        Item, on_delete=models.CASCADE, related_name='order_item_id')
-    quantity = models.IntegerField()
-
-
-class User(models.Model):
-    # add username and password if we get to authentication
-    name = models.CharField(max_length=100)
-    credit_card_num = models.IntegerField()
-    credit_card_sec_code = models.IntegerField()
-    credit_card_exp_date = models.CharField(max_length=5)
