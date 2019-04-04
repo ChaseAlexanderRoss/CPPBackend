@@ -4,7 +4,7 @@ from .models import Address, Box, Item, Order, User
 
 class AddressSerializer(serializers.HyperlinkedModelSerializer):
     addresses = serializers.HyperlinkedRelatedField(
-        view_name='address_detail',
+        view_name='addresses_detail',
         read_only=True
     )
 
@@ -16,7 +16,7 @@ class AddressSerializer(serializers.HyperlinkedModelSerializer):
 
 class BoxSerializer(serializers.HyperlinkedModelSerializer):
     boxes = serializers.HyperlinkedRelatedField(
-        view_name='box_detail',
+        view_name='boxes_detail',
         read_only=True
     )
 
@@ -27,7 +27,7 @@ class BoxSerializer(serializers.HyperlinkedModelSerializer):
 
 class ItemSerializer:
     items = serializers.HyperlinkedRelatedField(
-        view_name='item_detail',
+        view_name='items_detail',
         read_only=True
     )
 
@@ -39,7 +39,7 @@ class ItemSerializer:
 
 class UserSerializer:
     users = serializers.HyperlinkedRelatedField(
-        view_name='user_detail',
+        view_name='users_detail',
         read_only=True
     )
 
@@ -51,7 +51,7 @@ class UserSerializer:
 
 class OrderSerializer:
     orders = serializers.HyperlinkedRelatedField(
-        view_name='order_detail',
+        view_name='orders_detail',
         read_only=True
     )
 

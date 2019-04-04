@@ -5,51 +5,51 @@ from .serializers import AddressSerializer, BoxSerializer, ItemSerializer, UserS
 # Create your views here.
 
 
-class AddressList(generics.ListCreateAPIView):
+class AddressesList(generics.ListCreateAPIView):
     queryset = Address.objects.all()
     serializer_class = AddressSerializer
 
 
-class AddressDetail(generics.RetrieveUpdateDestroyAPIView):
+class AddressesDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Address.objects.all()
     serializer_class = AddressSerializer
 
 
-class BoxList(generics.ListCreateAPIView):
+class BoxesList(generics.ListCreateAPIView):
     queryset = Box.objects.all()
     serializer_class = BoxSerializer
 
 
-class BoxDetail(generics.RetrieveUpdateDestroyAPIView):
+class BoxesDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Box.objects.all()
     serializer_class = BoxSerializer
 
 
-class UserList(generics.ListCreateAPIView):
+class UsersList(generics.ListCreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
 
-class UserDetail(generics.RetrieveUpdateDestroyAPIView):
+class UsersDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
 
-class OrderList(generics.ListAPIView):
+class OrdersList(generics.ListAPIView):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
 
 
-class OrderDetail(generics.RetrieveUpdateDestroyAPIView):
+class OrdersDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
 
 
-class ItemList(generics.ListAPIView):
+class ItemsList(generics.ListAPIView):
     queryset = Item.objects.all()
     serializer_class = ItemSerializer
 
 
-class ItemDetail(generics.RetrieveUpdateDestroyAPIView):
+class ItemsDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Item.objects.all()
     serializer_class = ItemSerializer
